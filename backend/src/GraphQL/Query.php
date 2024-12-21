@@ -36,6 +36,15 @@ class Query
                         ],
                         'resolve' => static fn ($rootValue, $args) => ProductsResolver::index($args['category'] ?? null)
 
+                    ],
+                    'product' => [
+                        'type' => $productType,
+                        'args' => [
+                            'id' => [
+                                'type' => Type::nonNull(Type::string())
+                            ]
+                        ],
+                        'resolve' => static fn ($rootValue, $args) => ProductsResolver::showProduct($args['id'])
                     ]
                 ]
         ]);

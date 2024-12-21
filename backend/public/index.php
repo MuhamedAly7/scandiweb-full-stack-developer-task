@@ -25,6 +25,12 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
 // echo json_encode($products);
 // exit;
 
+// $product = Product::getById("apple-imac-2021");
+// echo json_encode($product);
+
+// dump($product);
+// exit;
+
 $routeInfo = $dispatcher->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
 
 

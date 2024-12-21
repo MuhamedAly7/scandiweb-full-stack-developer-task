@@ -10,7 +10,7 @@ class ProductsResolver
         return Product::productGetAll($category);
     }
 
-    public static function getById(string $productId) : array {
-        return Product::getByVal($productId);
+    public static function showProduct(string $productId) : array {
+        return Product::getById($productId)[0];
     }
 }

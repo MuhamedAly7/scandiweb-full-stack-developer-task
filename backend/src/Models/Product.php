@@ -19,10 +19,10 @@ class Product extends Model
         return $products;
     }
 
-    public static function getByVal(string $val, string $column = null) : array {
-        $product = self::where([$column, '=', $val]);
-        if($product) {
-            self::fetchProductDetails($product);
+    public static function getById(string $productId) : array {
+        $product = self::where(['id', '=', $productId]);
+        foreach($product as &$p) {
+            self::fetchProductDetails($p);
         }
         return $product;
     }
