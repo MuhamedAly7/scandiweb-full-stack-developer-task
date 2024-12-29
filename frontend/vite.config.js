@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/graphql": {
-        target: "http://fullstack-scandiweb-mohamedhassan.web1337.net",
+        target: "https://fullstack-scandiweb-mohamedhassan.web1337.net",
         changeOrigin: true,
         secure: false,
       },
