@@ -36,7 +36,7 @@ export const GET_CATEGORIES = gql`
 `;
 
 export const GET_PRODUCTS = gql`
-    query ($category: String) {
+    query ($category: String!) {
         products(category: $category) {
             ${productFields}
         }
