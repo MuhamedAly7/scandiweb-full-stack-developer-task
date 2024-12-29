@@ -5,7 +5,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { Provider } from "react-redux";
 import { store } from "./features/store.js";
 
-const graphqlEndPoint = import.meta.env.VITE_APIS_URL;
+const graphqlEndPoint = "/graphql";
 
 const apolloClient = new ApolloClient({
   uri: graphqlEndPoint,

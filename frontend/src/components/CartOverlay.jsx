@@ -64,7 +64,7 @@ function CartOverlay({ isOpen, onClose }) {
     0
   );
 
-  console.log(cartArr);
+  // console.log(cartArr);
 
   return (
     <div

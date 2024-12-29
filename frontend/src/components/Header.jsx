@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES } from "../graphql/queries";
@@ -10,6 +10,7 @@ function Header() {
   const [activeLink, setActiveLink] = useState("all");
   const [isCartOpen, setCartOpen] = useState(false);
   const cart = useSelector((state) => state.cart);
+  const navigate = useNavigate();
 
   const handleLinkClick = (category) => {
     // event.preventDefault();
@@ -50,6 +51,13 @@ function Header() {
             );
           })}
         </nav>
+        <img
+          src="/src/assets/reload.png"
+          alt="reload"
+          onClick={() => {
+            navigate("/");
+          }}
+        />
         <button
           className={`cart ${cart.length === 0 ? "disabled" : ""}`}
           data-testid="cart-btn"
