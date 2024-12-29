@@ -9,7 +9,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       "/graphql": {
-        target: "http://fullstack-scandiweb-mohamedhassan.web1337.net/graphql",
+        target: "http://fullstack-scandiweb-mohamedhassan.web1337.net",
         changeOrigin: true,
         secure: false,
       },
