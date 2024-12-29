@@ -11,10 +11,10 @@ const graphqlEndPoint =
 const apolloClient = new ApolloClient({
   uri: graphqlEndPoint,
   cache: new InMemoryCache(),
-  credentials: "include",
-  headers: {
-    "Content-Type": "application/json",
-  },
+  // credentials: "include",
+  // headers: {
+  //   "Content-Type": "application/json",
+  // },
 });
 
 createRoot(document.getElementById("root")).render(
