@@ -52,7 +52,7 @@ function Header() {
           })}
         </nav>
         <img
-          src="/src/assets/reload.png"
+          src="https://cdn-icons-png.freepik.com/256/12635/12635071.png?semt=ais_hybrid"
           alt="reload"
           onClick={() => {
             setActiveLink("all");
