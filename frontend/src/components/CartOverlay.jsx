@@ -69,7 +69,7 @@ function CartOverlay({ isOpen, onClose }) {
   return (
     <div className="cart-overlay" style={{ display: "grid" }}>
       <div onClick={onClose}></div>
-      <div className="cart-content">
+      <div className="cart-content" data-testid="cart-overlay">
         <h2>
           <strong>My Bag,</strong>{" "}
           {cartArr.reduce((total, product) => total + product.quantity, 0)}{" "}
