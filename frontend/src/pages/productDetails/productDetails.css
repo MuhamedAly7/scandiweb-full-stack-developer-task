@@ -193,6 +193,7 @@ header .cart {
 
 /* Add media queries for responsive design */
 @media (max-width: 1000px) {
+  
   .product-details {
     flex-direction: column;
     align-items: center;
@@ -200,16 +201,22 @@ header .cart {
   }
 
   .image-gallery {
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
   }
 
+  .thumbnails {
+    flex-direction: row;
+  }
+
   .main-image {
-    width: 100%;
-    max-width: 300px; /* Adjust as necessary for smaller screens */
+    /* width: 100%; */
+    /* max-width: 300px; */
+
     height: auto; /* Maintain aspect ratio */
     margin-top: 20px;
   }
+
 
   .product-info {
     padding-left: 0;
@@ -220,4 +227,5 @@ header .cart {
   .add-to-cart {
     width: 100%; /* Make the button take full width on smaller screens */
   }
+  
 }

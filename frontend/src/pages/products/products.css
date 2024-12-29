@@ -190,8 +190,8 @@ h1 {
   position: absolute;
   right: 35px;
   background: white;
-  width: 400px;
-  max-width: 50%;
+  width: 500px;
+  max-width: 80%;
   padding: 20px;
   max-height: min-content;
   /* border-radius: 10px; */
