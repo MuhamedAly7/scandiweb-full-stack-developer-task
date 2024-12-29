@@ -52,7 +52,7 @@ function CartOverlay({ isOpen, onClose }) {
   };
 
   useEffect(() => {
-    if (isOpen && cartArr.length === 0) {
+    if (isOpen) {
       onClose();
     }
   }, [cartArr.length, isOpen, onClose]);
