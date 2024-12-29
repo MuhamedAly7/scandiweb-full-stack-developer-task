@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES } from "../graphql/queries";
 import CartOverlay from "./CartOverlay";
@@ -55,7 +55,8 @@ function Header() {
           src="/src/assets/reload.png"
           alt="reload"
           onClick={() => {
-            navigate("/");
+            setActiveLink("all");
+            navigate("/all");
           }}
         />
         <button

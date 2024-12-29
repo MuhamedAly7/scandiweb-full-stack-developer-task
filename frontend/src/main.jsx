@@ -6,15 +6,15 @@ import { Provider } from "react-redux";
 import { store } from "./features/store.js";
 
 const graphqlEndPoint =
-  "http://fullstack-scandiweb-mohamedhassan.web1337.net/graphql";
+  "https://scandiwebfullstackmohamedhassan.helioho.st/graphql";
 
 const apolloClient = new ApolloClient({
   uri: graphqlEndPoint,
   cache: new InMemoryCache(),
-  // credentials: "include",
-  // headers: {
-  //   "Content-Type": "application/json",
-  // },
+  credentials: "include",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 createRoot(document.getElementById("root")).render(
