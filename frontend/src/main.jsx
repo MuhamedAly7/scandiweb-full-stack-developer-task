@@ -5,7 +5,8 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { Provider } from "react-redux";
 import { store } from "./features/store.js";
 
-const graphqlEndPoint = "/graphql";
+const graphqlEndPoint =
+  "http://fullstack-scandiweb-mohamedhassan.web1337.net/graphql";
 
 const apolloClient = new ApolloClient({
   uri: graphqlEndPoint,
