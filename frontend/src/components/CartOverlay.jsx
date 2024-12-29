@@ -52,8 +52,8 @@ function CartOverlay({ isOpen, onClose }) {
   };
 
   useEffect(() => {
-    if (isOpen) {
-      onClose();
+    if (isOpen && cartArr.length === 0) {
+      // onClose();
     }
   }, [cartArr.length, isOpen, onClose]);
 
@@ -67,10 +67,7 @@ function CartOverlay({ isOpen, onClose }) {
   // console.log(cartArr);
 
   return (
-    <div
-      className="cart-overlay"
-      style={cartArr.length > 0 ? { display: "grid" } : { display: "none" }}
-    >
+    <div className="cart-overlay" style={{ display: "grid" }}>
       <div onClick={onClose}></div>
       <div className="cart-content">
         <h2>
