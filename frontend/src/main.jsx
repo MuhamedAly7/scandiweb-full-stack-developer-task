@@ -10,6 +10,10 @@ const graphqlEndPoint = import.meta.env.VITE_APIS_URL;
 const apolloClient = new ApolloClient({
   uri: graphqlEndPoint,
   cache: new InMemoryCache(),
+  credentials: "include",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 createRoot(document.getElementById("root")).render(
