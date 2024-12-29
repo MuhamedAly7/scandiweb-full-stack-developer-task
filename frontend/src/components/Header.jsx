@@ -60,7 +60,7 @@ function Header() {
           }}
         />
         <button
-          className={`cart ${cart.length === 0 ? "disabled" : ""}`}
+          className={`cart`}
           data-testid="cart-btn"
           onClick={toggleCart}
         >
