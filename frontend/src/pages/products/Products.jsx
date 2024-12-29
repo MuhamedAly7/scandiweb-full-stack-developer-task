@@ -8,7 +8,6 @@ function Products() {
   const { category } = useParams();
   const { data, loading, error } = useQuery(GET_PRODUCTS, {
     variables: { category: category ?? "all" },
-    fetchPolicy: "network-only",
   });
 
   if (loading) return <h1>Loading...</h1>;
