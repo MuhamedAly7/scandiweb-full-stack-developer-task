@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "./features/store.js";
 
 const graphqlEndPoint =
-  "https://fullstack-scandiweb-mohamedhassan.web1337.net/graphql";
+  "http://fullstack-scandiweb-mohamedhassan.web1337.net/graphql";
 
 const apolloClient = new ApolloClient({
   uri: graphqlEndPoint,
