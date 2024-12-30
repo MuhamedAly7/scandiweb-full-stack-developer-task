@@ -18,9 +18,9 @@ function ProductInfo({ productDetail, setProductDetail }) {
             <div
               className="attribute"
               key={attribute.id}
-              data-testid={`"product-attribute-${attribute.name
+              data-testid={`product-attribute-${attribute.name
                 .replace(/\s+/g, "-")
-                .toLowerCase()}"`}
+                .toLowerCase()}`}
             >
               <ProductAttribute
                 attribute={attribute}
