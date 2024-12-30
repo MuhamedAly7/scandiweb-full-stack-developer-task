@@ -43,9 +43,7 @@ function CartProductAttribute({ attribute, cartArr, productIndex }) {
             }}
             data-testid={`cart-item-attribute-${attribute.name
               .replace(/\s+/g, "-")
-              .toLowerCase()}-${attribute.name
-              .replace(/\s+/g, "-")
-              .toLowerCase()}${item.selected ? "-selected" : ""}`}
+              .toLowerCase()}-${item.value}${item.selected ? "-selected" : ""}`}
           >
             {attribute.type === "text" && item.display_value}
           </button>
