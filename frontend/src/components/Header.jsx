@@ -23,7 +23,7 @@ function Header() {
   };
 
   useEffect(() => {
-    if (!isCartOpen) {
+    if (!isCartOpen && cart.length > 0) {
       toggleCart();
     }
   }, [cart]);
