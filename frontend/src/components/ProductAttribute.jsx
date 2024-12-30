@@ -7,9 +7,9 @@ function ProductAttribute({ attribute, productDetail, setProductDetail }) {
       {attribute.items.map((item) => {
         return (
           <button
-            data-testid={`product-attribute-${attribute.name}-${item.value
+            data-testid={`product-attribute-${attribute.name
               .replace(/\s+/g, "-")
-              .toLowerCase()}`}
+              .toLowerCase()}-${item.value}`}
             className={`${attribute.type} ${item.selected && "selected"}`}
             key={item.id}
             style={
