@@ -42,6 +42,7 @@ function ProductCard({ product }) {
                   })),
                 };
                 dispatch(addToCart(updatedProduct));
+                
               }}
             >
               <svg

@@ -55,7 +55,7 @@ function CartOverlay({ isOpen, onClose }) {
     if (isOpen && cartArr.length === 0) {
       // onClose();
     }
-  }, [cartArr.length, isOpen, onClose]);
+  },[]);
 
   if (!isOpen) return null;
 

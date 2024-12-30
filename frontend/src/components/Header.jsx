@@ -22,6 +22,12 @@ function Header() {
     setCartOpen(!isCartOpen);
   };
 
+  useEffect(() => {
+    if (!isCartOpen) {
+      toggleCart();
+    }
+  }, [cart]);
+
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Error: {error.message}</h1>;
 
@@ -59,11 +65,7 @@ function Header() {
             navigate("/all");
           }}
         />
-        <button
-          className={`cart`}
-          data-testid="cart-btn"
-          onClick={toggleCart}
-        >
+        <button className={`cart`} data-testid="cart-btn" onClick={toggleCart}>
           🛒
           {cart.length > 0 && (
             <span className="cart-badge">
