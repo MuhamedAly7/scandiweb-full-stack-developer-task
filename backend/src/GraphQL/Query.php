@@ -4,8 +4,8 @@ namespace App\GraphQL;
 
 use App\GraphQL\resolvers\CategoryResolver;
 use App\GraphQL\resolvers\ProductsResolver;
-use App\GraphQL\types\CategoryType;
-use App\GraphQL\types\ProductType;
+use App\GraphQL\schema\CategoryType;
+use App\GraphQL\schema\ProductType;
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 

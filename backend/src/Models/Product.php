@@ -13,6 +13,7 @@ class Product extends Model
         }
 
         foreach($products as &$product) {
+            $product['description'] = rtrim(ltrim(strip_tags($product['description'])));
             self::fetchProductDetails($product);
         }
 
@@ -22,6 +23,7 @@ class Product extends Model
     public static function getById(string $productId) : array {
         $product = self::where(['id', '=', $productId]);
         foreach($product as &$p) {
+            $p['description'] = rtrim(ltrim(strip_tags($p['description'])));
             self::fetchProductDetails($p);
         }
         return $product;

@@ -1,22 +1,21 @@
 <?php
 
-namespace App\GraphQL\types;
+namespace App\GraphQL\schema;
 
-use GraphQL\Type\Definition\ObjectType;
+use GraphQL\Type\Definition\InputObjectType;
 use GraphQL\Type\Definition\Type;
 
-class AttributeType extends ObjectType
+class OrderItemsType extends InputObjectType
 {
     public function __construct()
     {
         $config = [
-            'name' => 'AttributeType',
+            'name' => 'OrderItems',
             'fields' => [
                 'id' => Type::string(),
-                // 'attribute_id' => Type::string(),
-                "display_value" => Type::string(),
                 'value' => Type::string(),
-
+                'display_value' => Type::string(),
+                'selected' => Type::boolean()
             ]
         ];
         parent::__construct($config);

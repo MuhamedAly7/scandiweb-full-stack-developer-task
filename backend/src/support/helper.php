@@ -65,3 +65,13 @@ if(!function_exists('dump')) {
         echo '</pre>';
     }
 }
+
+if(!function_exists('abort')) {
+    function abort($statusCode, $message) {
+        http_response_code($statusCode);
+        header('Content-Type: application/json');
+        echo json_encode(['error' => $message]);
+        die();
+
+    }
+}

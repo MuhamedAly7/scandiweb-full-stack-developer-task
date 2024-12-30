@@ -1,0 +1,22 @@
+# Set PHP configurations
+php_value mbstring.http_input auto
+php_value date.timezone Africa/Cairo
+
+RewriteEngine On
+
+# Ensure requests are redirected to the public directory
+# RewriteCond %{REQUEST_URI} !^/public/
+
+# Ignore existing files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirect all other requests to public/index.php
+RewriteRule ^(.*)$ public/index.php [L,QSA]
+
+# Enable CORS
+<IfModule mod_headers.c>
+    Header Set Access-Control-Allow-Origin "*"
+    Header Set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header Set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>

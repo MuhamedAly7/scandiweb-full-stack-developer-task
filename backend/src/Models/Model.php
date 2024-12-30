@@ -42,5 +42,5 @@ abstract class Model
     public static function getTableName()
     {   
         return Str::lower(Str::plural(class_basename(self::$instance)));
-    }   
+    }
 }

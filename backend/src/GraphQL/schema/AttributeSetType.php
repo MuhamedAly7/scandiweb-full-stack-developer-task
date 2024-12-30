@@ -1,18 +1,21 @@
 <?php
 
-namespace App\GraphQL\types;
+namespace App\GraphQL\schema;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 
-class CategoryType extends ObjectType
+class AttributeSetType extends ObjectType
 {
     public function __construct()
     {
         $config = [
-            'name' => 'Category',
+            'name' => 'AttributeSet',
             'fields' => [
+                'id' => Type::string(),
                 'name' => Type::string(),
+                'type' => Type::string(),
+                'items' => Type::listOf(new AttributeType()),
             ]
         ];
 

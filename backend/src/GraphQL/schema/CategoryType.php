@@ -1,21 +1,21 @@
 <?php
 
-namespace App\GraphQL\types;
+namespace App\GraphQL\schema;
 
 use GraphQL\Type\Definition\ObjectType;
 use GraphQL\Type\Definition\Type;
 
-class CurrencyType extends ObjectType
+class CategoryType extends ObjectType
 {
     public function __construct()
     {
         $config = [
-            'name' => 'CurrencyType',
+            'name' => 'Category',
             'fields' => [
-                'label' => Type::string(),
-                'symbol' => Type::string(),
+                'name' => Type::string(),
             ]
         ];
+
         parent::__construct($config);
     }
 }
