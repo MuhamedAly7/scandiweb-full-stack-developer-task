@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES } from "../graphql/queries";
@@ -11,10 +11,15 @@ function Header() {
   const [isCartOpen, setCartOpen] = useState(false);
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const currentPath = location.pathname.slice(1);
+    const currentCategory = currentPath || "all";
+    setActiveLink(currentCategory);
+  }, [location]);
 
   const handleLinkClick = (category) => {
-    // event.preventDefault();
-    // console.log(`Active link set to: ${category}`);
     setActiveLink(category);
   };
 
@@ -30,8 +35,6 @@ function Header() {
 
   if (loading) return <h1>Loading...</h1>;
   if (error) return <h1>Error: {error.message}</h1>;
-
-  // console.log(data);
 
   return (
     <>
@@ -50,7 +53,7 @@ function Header() {
                     ? "active-category-link"
                     : "category-link"
                 }`}
-                onClick={(event) => handleLinkClick(category.name, event)}
+                onClick={() => handleLinkClick(category.name)}
               >
                 {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
               </Link>
