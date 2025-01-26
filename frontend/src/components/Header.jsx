@@ -1,23 +1,12 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useQuery, useLazyQuery, gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { GET_CATEGORIES } from "../graphql/queries";
 import CartOverlay from "./CartOverlay";
 import { useSelector } from "react-redux";
 
-// GraphQL query to get the category by product ID
-const GET_PRODUCT_CATEGORY = gql`
-  query GetProductCategory($id: String!) {
-    product(id: $id) {
-      category
-    }
-  }
-`;
-
 function Header() {
   const { loading, error, data } = useQuery(GET_CATEGORIES);
-  const [getProductCategory, { data: productData }] =
-    useLazyQuery(GET_PRODUCT_CATEGORY);
   const [activeLink, setActiveLink] = useState("all");
   const [isCartOpen, setCartOpen] = useState(false);
   const cart = useSelector((state) => state.cart);
@@ -25,26 +14,10 @@ function Header() {
   const location = useLocation();
 
   useEffect(() => {
-    const pathSegments = location.pathname.split("/").filter(Boolean);
-
-    if (pathSegments[0] === "products" && pathSegments[1]) {
-      // If the current route is `/products/:productId`, fetch the category
-      const productId = pathSegments[1];
-      getProductCategory({ variables: { id: productId } });
-    } else if (pathSegments[0]) {
-      // Otherwise, highlight the category from the URL
-      setActiveLink(pathSegments[0]);
-    } else {
-      setActiveLink("all");
-    }
-  }, [location, getProductCategory]);
-
-  useEffect(() => {
-    // Update activeLink when productData is available
-    if (productData && productData.product) {
-      setActiveLink(productData.product.category);
-    }
-  }, [productData]);
+    const currentPath = location.pathname.slice(1);
+    const currentCategory = currentPath || "all";
+    setActiveLink(currentCategory);
+  }, [location]);
 
   const handleLinkClick = (category) => {
     setActiveLink(category);
