@@ -50,3 +50,11 @@ export const GET_SINGLE_PRODUCT = gql`
     }
   }
 `;
+
+const GET_PRODUCT_CATEGORY = gql`
+  query GetProductCategory($id: String!) {
+    product(id: $id) {
+      category
+    }
+  }
+`;
