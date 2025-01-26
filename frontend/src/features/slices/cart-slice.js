@@ -34,39 +34,25 @@ export const cartSlice = createSlice({
     updateProductInCart: (state, action) => {
       const { updatedProduct, productIndex } = action.payload;
 
-      if (state[productIndex].quantity > 1) {
-        state[productIndex].quantity -= 1;
+      // Check if the updated product is identical to any other product in the cart
+      const identicalProductIndex = state.findIndex(
+        (item, index) =>
+          index !== productIndex &&
+          item.id === updatedProduct.id &&
+          areAttributesIdentical(updatedProduct.attributes, item.attributes)
+      );
 
-        const identicalProduct = state.find(
-          (item) =>
-            item.id === updatedProduct.id &&
-            areAttributesIdentical(updatedProduct.attributes, item.attributes)
-        );
-
-        if (identicalProduct) {
-          // Increment quantity for the identical product
-          identicalProduct.quantity += 1;
-        } else {
-          // Add as a new product if no identical product exists
-          state.push({ ...updatedProduct, quantity: 1 });
-        }
+      if (identicalProductIndex !== -1) {
+        // If an identical product is found, increment its quantity and remove the current product
+        state[identicalProductIndex].quantity += state[productIndex].quantity;
+        state.splice(productIndex, 1);
       } else {
-        const identicalProduct = state.find(
-          (item) =>
-            item.id === updatedProduct.id &&
-            areAttributesIdentical(updatedProduct.attributes, item.attributes)
-        );
-
-        if (identicalProduct) {
-          identicalProduct.quantity += 1;
-          state.splice(productIndex, 1);
-        } else {
-          state[productIndex] = { ...updatedProduct };
-        }
+        // If no identical product is found, simply update the product at the current index
+        state[productIndex] = updatedProduct;
       }
     },
     removeFromCart: (state, action) => {
-      const productIndex = action.payload; // Index of the product in the cart array
+      const productIndex = action.payload;
 
       if (productIndex >= 0 && productIndex < state.length) {
         const product = state[productIndex];
@@ -81,7 +67,7 @@ export const cartSlice = createSlice({
       }
     },
     clearCart: () => {
-      return []; // Reset cart to an empty array
+      return [];
     },
   },
 });
