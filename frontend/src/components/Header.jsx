@@ -1,9 +1,18 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useQuery, useLazyQuery } from "@apollo/client";
-import { GET_CATEGORIES, GET_PRODUCT_CATEGORY } from "../graphql/queries";
+import { useQuery, useLazyQuery, gql } from "@apollo/client";
+import { GET_CATEGORIES } from "../graphql/queries";
 import CartOverlay from "./CartOverlay";
 import { useSelector } from "react-redux";
+
+// GraphQL query to get the category by product ID
+const GET_PRODUCT_CATEGORY = gql`
+  query GetProductCategory($id: String!) {
+    product(id: $id) {
+      category
+    }
+  }
+`;
 
 function Header() {
   const { loading, error, data } = useQuery(GET_CATEGORIES);
@@ -19,9 +28,11 @@ function Header() {
     const pathSegments = location.pathname.split("/").filter(Boolean);
 
     if (pathSegments[0] === "products" && pathSegments[1]) {
+      // If the current route is `/products/:productId`, fetch the category
       const productId = pathSegments[1];
       getProductCategory({ variables: { id: productId } });
     } else if (pathSegments[0]) {
+      // Otherwise, highlight the category from the URL
       setActiveLink(pathSegments[0]);
     } else {
       setActiveLink("all");
@@ -29,6 +40,7 @@ function Header() {
   }, [location, getProductCategory]);
 
   useEffect(() => {
+    // Update activeLink when productData is available
     if (productData && productData.product) {
       setActiveLink(productData.product.category);
     }
