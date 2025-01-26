@@ -1,4 +1,4 @@
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useLazyQuery, useQuery } from "@apollo/client";
 import { GET_CATEGORIES, GET_PRODUCT_CATEGORY } from "../graphql/queries";
@@ -14,22 +14,25 @@ function Header() {
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const location = useLocation();
+  const { productId } = useParams();
 
   useEffect(() => {
-    const pathSegments = location.pathname.split("/").filter(Boolean);
+    const currentPath = location.pathname;
 
-    if (pathSegments[0] === "products" && pathSegments[1]) {
-      const productId = pathSegments[1];
+    // Check if the current route is the product details page
+    if (currentPath.startsWith("/products/")) {
+      // Fetch the product category using the productId
       getProductCategory({ variables: { id: productId } });
-    } else if (pathSegments[0]) {
-      setActiveLink(pathSegments[0]);
     } else {
-      setActiveLink("all");
+      // Otherwise, set the active category based on the URL
+      const currentCategory = currentPath.slice(1) || "all";
+      setActiveLink(currentCategory);
     }
-  }, [location, getProductCategory]);
+  }, [location, productId, getProductCategory]);
 
   useEffect(() => {
-    if (productData && productData.product) {
+    // If the product category is fetched, set it as the active category
+    if (productData?.product?.category) {
       setActiveLink(productData.product.category);
     }
   }, [productData]);
