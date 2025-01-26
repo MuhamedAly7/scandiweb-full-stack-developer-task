@@ -34,15 +34,35 @@ export const cartSlice = createSlice({
     updateProductInCart: (state, action) => {
       const { updatedProduct, productIndex } = action.payload;
 
+      // Check if there's an identical product in the cart (excluding the current product)
+      const identicalProductIndex = state.findIndex(
+        (item, index) =>
+          index !== productIndex &&
+          item.id === updatedProduct.id &&
+          areAttributesIdentical(updatedProduct.attributes, item.attributes)
+      );
+
       if (state[productIndex].quantity > 1) {
         // If quantity is greater than 1, decrement the original product's quantity
         state[productIndex].quantity -= 1;
 
-        // Add a new product entry with the updated attributes and a quantity of 1
-        state.push({ ...updatedProduct, quantity: 1 });
+        if (identicalProductIndex !== -1) {
+          // If an identical product exists, increment its quantity by 1
+          state[identicalProductIndex].quantity += 1;
+        } else {
+          // If no identical product exists, add a new product entry with the updated attributes
+          state.push({ ...updatedProduct, quantity: 1 });
+        }
       } else {
-        // If quantity is 1, simply update the product's attributes at the current index
-        state[productIndex] = updatedProduct;
+        // If quantity is 1
+        if (identicalProductIndex !== -1) {
+          // If an identical product exists, increment its quantity by 1 and remove the current product
+          state[identicalProductIndex].quantity += 1;
+          state.splice(productIndex, 1);
+        } else {
+          // If no identical product exists, update the product's attributes at the current index
+          state[productIndex] = updatedProduct;
+        }
       }
     },
     removeFromCart: (state, action) => {
